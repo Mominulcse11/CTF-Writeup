@@ -1,0 +1,61 @@
+Connect to server
+
+1.Use nc chall.lac.tf 31181 or Python socket.
+
+     Solve PoW
+
+2.Run redpwnpow with given suffix.
+
+Send solution back.
+
+3.Get RSA values
+
+Receive:
+
+n
+
+c
+
+e (usually 65537)
+
+Save them.
+
+4.Understand p structure
+
+p = (67×'6') || (67 unknown digits: 6/7) || (67×'7')
+
+~66% of p known → RSA broken.
+
+5.Build polynomial
+
+Let x = unknown middle part
+
+p = high + x*10^67 + low
+
+Polynomial: f(x) = high + x*10^67 + low ≡ 0 (mod n)
+
+6.Run Coppersmith
+
+Use SageMath
+
+small_roots() on f(x) with proper bounds.
+
+7.Recover p
+
+Plug found x → full p.
+8.
+Compute q
+
+q = n // p
+9.
+Recover private key
+
+φ = (p-1)(q-1)
+
+d = inverse(e, φ)
+10.
+Decrypt
+
+m = pow(c, d, n)
+
+Convert to bytes → flag.

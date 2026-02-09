@@ -1,0 +1,36 @@
+Steps to solve:
+
+The flag is first converted into phonetic words.
+
+The phonetic conversion is applied twice.
+
+The resulting string is split into bigrams.
+
+Each plaintext bigram is replaced by a random ciphertext bigram using a fixed substitution.
+
+The flag prefix is known:
+lactf{
+
+Start with the known prefix:
+flag = "lactf{"
+
+Convert this prefix into phonetic form (twice).
+
+Build bigrams from the phonetic string.
+
+Match these bigrams with the given ciphertext bigrams.
+
+Use DFS/backtracking to extend the flag character by character:
+
+For each next character, generate its phonetic expansion
+
+Check bigram consistency with ciphertext
+
+Maintain a cipher-to-plain bigram mapping
+
+Backtrack if any conflict occurs
+
+Continue until the full flag is recovered.
+
+Flag:
+lactf{n0t_r34lly_4_b1gr4m_su8st1tu7ion_bu7_1_w1ll_tak3_1t_f0r_n0w}

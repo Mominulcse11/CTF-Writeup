@@ -1,0 +1,25 @@
+Given RSA with N = p*q where both p and q use only digits {6,7} and end with 7.
+So p ≡ 7 (mod 10), q ≡ 7 (mod 10).
+
+Use the fact that the last k digits of a product depend only on the last k digits of the factors.
+
+Build p and q from least significant digit using DFS:
+
+Start with p = 7, q = 7
+
+At each step append 6 or 7 to p and q
+
+Check (p*q) mod 10^k == N mod 10^k
+
+If not matching, backtrack
+
+Continue until a full p is found such that p divides N.
+
+Compute q = N / p.
+
+Compute φ(N) = (p−1)(q−1) and d = e⁻¹ mod φ(N).
+
+Decrypt m = c^d mod N and convert to bytes to get the flag.
+
+Flag:
+lactf{wh4t_67s_15_blud_f4ct0r1ng_15_blud_31nst31n}
